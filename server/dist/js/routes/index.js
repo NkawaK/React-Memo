@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const memoController_1 = require("../controllers/memos/memoController");
+const router = express_1.Router();
+router.get('/memos', memoController_1.getMemos);
+router.post('/add-memo', memoController_1.addMemo);
+router.put('/edit-memo', memoController_1.updateMemo);
+router.delete('/delete-memo', memoController_1.deleteMemo);
+exports.default = router;
