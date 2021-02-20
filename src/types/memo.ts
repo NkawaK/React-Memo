@@ -2,6 +2,6 @@ import { Document } from "mongoose";
 
 export interface IMemo extends Document {
   title: string;
-  descriptions: string;
+  description: string;
   pinned: boolean;
 };

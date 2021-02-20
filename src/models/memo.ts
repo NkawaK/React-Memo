@@ -7,7 +7,7 @@ const memoSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    descriptions: {
+    description: {
       type: String,
     },
     pinned: {
