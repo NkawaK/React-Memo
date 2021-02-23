@@ -1,13 +1,11 @@
 import React from 'react';
 
-type Props = {
-  title: string;
-};
-
-export const Header: React.FC<Props> = (props: Props) => {
+export const Header: React.FC = () => {
   return (
     <header>
-      <h3>{props.title}</h3>
+      <h3>
+        <i className="fas fa-book"></i> メモ帳
+      </h3>
     </header>
   );
 };
