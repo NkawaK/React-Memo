@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const AddButton: React.FC = () => {
   return (
-    <Link to="" className="btn btn--blue">
+    <Link to="/add-memo" className="btn btn--blue">
       <i className="fas fa-pen"></i> メモ追加
     </Link>
   );

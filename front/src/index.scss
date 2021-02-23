@@ -61,6 +61,10 @@ footer {
   font-size: 0.7rem;
 }
 
+.btn-–large {
+  width: 85%;
+}
+
 .btn--blue {
   color: #fff;
   background-color: #a9a9a9;
@@ -76,6 +80,15 @@ footer {
   &:hover {
     color: #fff;
     background: #dc143c;
+  }
+}
+
+.btn--navy {
+  color: #fff;
+  background-color: #000080;
+  &:hover {
+    color: #fff;
+    background: #191970;
   }
 }
 
@@ -116,5 +129,48 @@ footer {
       display: inline-block;
       margin-right: 0.5rem;
     }
+  }
+}
+
+.editform {
+  margin: 0 auto;
+  padding: 1.5rem;
+  width: 80%;
+  height: 35rem;
+  background-color: #a9a9a9;
+  border: solid 1px black;
+  border-radius: 0.1rem;
+  color: #fff;
+  label {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  input[type='text'] {
+    width: 99%;
+    border: solid 1px black;
+    border-radius: 0.1rem;
+  }
+  textarea {
+    width: 99%;
+    height: 24rem;
+    resize: none;
+    border: solid 1px black;
+    border-radius: 0.1rem;
+  }
+  .title {
+    margin-bottom: 0.5rem;
+  }
+  .pin {
+    label {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+  }
+  .description {
+    margin-bottom: 0.5rem;
+  }
+  .savebutton {
+    text-align: center;
   }
 }
