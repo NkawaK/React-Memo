@@ -2,7 +2,11 @@ import React from 'react';
 import { BackButton } from '../components/BackButton';
 import { SaveButton } from '../components/SaveButton';
 
-export const EditForm: React.FC = () => {
+type Props = {
+  memo?: IMemo
+};
+
+export const EditForm: React.FC<Props> = ({ memo }) => {
   return (
     <div className='container'>
       <div className="add-button">
