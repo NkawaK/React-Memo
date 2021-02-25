@@ -1,6 +1,6 @@
 import React from 'react';
-import { EditButton } from '../components/EditButton';
-import { DeleteButton } from '../components/DeleteButton';
+import { EditButton } from './EditButton';
+import { DeleteButton } from './DeleteButton';
 
 export const Memo: React.FC<MemoProps> = ({ memo }) => {
   return (

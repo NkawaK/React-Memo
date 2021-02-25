@@ -11,14 +11,15 @@ export const getMemos = async (): Promise<AxiosResponse<ApiMemoDataType>> => {
   }
 };
 
-export const addmemo = async (formData: IMemo): Promise<AxiosResponse<ApiMemoDataType>> => {
+export const addMemo = async (formData: Omit<IMemo, '_id'>): Promise<AxiosResponse<ApiMemoDataType>> => {
   try {
     const memo: Omit<IMemo, '_id'> = {
       title: formData.title,
       description: formData.description,
       pinned: formData.pinned,
     };
-    const saveMemo: AxiosResponse<ApiMemoDataType> = await axios.post(`${baseURL}/add-memo`, memo);
+
+    const saveMemo: AxiosResponse<ApiMemoDataType> = await axios.post(baseURL + '/add-memo', memo);
     return saveMemo;
   } catch (error) {
     throw new Error(error);
