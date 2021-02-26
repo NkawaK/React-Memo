@@ -11,9 +11,9 @@ const App: React.FC = () => {
       <Header />
       <BrowserRouter>
         <Switch>
-          <Route path='/memos' component={Memos} />
-          <Route path='/add-memo' component={EditMemo} />
-          <Route path='/edit-memo' component={EditMemo} />
+          <Route path='/memos' component={Memos} exact/>
+          <Route path='/add-memo' component={EditMemo} exact/>
+          <Route path='/edit-memo/:id' component={EditMemo} exact/>
           <Redirect from='*' to='/memos'/>
         </Switch>
       </BrowserRouter>

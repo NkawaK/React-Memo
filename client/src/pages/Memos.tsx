@@ -26,6 +26,7 @@ export const Memos: React.FC = () => {
           <Memo
             key={memo._id}
             memo={memo}
+            setMemos={setMemos}
           />
         ))}
       </div>

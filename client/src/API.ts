@@ -11,6 +11,15 @@ export const getMemos = async (): Promise<AxiosResponse<ApiMemoDataType>> => {
   }
 };
 
+export const getMemo = async (_id: string): Promise<AxiosResponse<ApiMemoDataType>> => {
+  try {
+    const memo: AxiosResponse<ApiMemoDataType> = await axios.get(`${baseURL}/memo/${_id}`);
+    return memo;
+  } catch (error) {
+    throw new Error(error)
+  }
+};
+
 export const addMemo = async (formData: Omit<IMemo, '_id'>): Promise<AxiosResponse<ApiMemoDataType>> => {
   try {
     const memo: Omit<IMemo, '_id'> = {
@@ -19,22 +28,22 @@ export const addMemo = async (formData: Omit<IMemo, '_id'>): Promise<AxiosRespon
       pinned: formData.pinned,
     };
 
-    const saveMemo: AxiosResponse<ApiMemoDataType> = await axios.post(baseURL + '/add-memo', memo);
-    return saveMemo;
+    const response: AxiosResponse<ApiMemoDataType> = await axios.post(`${baseURL}/add-memo`, memo);
+    return response;
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export const updateMemo = async (formData: IMemo): Promise<AxiosResponse<ApiMemoDataType>> => {
+export const updateMemo = async (_id: string, formData: Omit<IMemo, '_id'>): Promise<AxiosResponse<ApiMemoDataType>> => {
   try {
     const memo: IMemo = {
-      _id: formData._id,
+      _id: _id,
       title: formData.title,
       description: formData.description,
       pinned: formData.pinned,
     };
-    const updatedMemo: AxiosResponse<ApiMemoDataType> = await axios.put(`${baseURL}/edit-memo/${memo._id}`);
+    const updatedMemo: AxiosResponse<ApiMemoDataType> = await axios.put(`${baseURL}/edit-memo/${_id}`,memo);
     return updatedMemo;
   } catch (error) {
     throw new Error(error);

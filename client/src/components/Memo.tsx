@@ -2,7 +2,7 @@ import React from 'react';
 import { EditButton } from './EditButton';
 import { DeleteButton } from './DeleteButton';
 
-export const Memo: React.FC<MemoProps> = ({ memo }) => {
+export const Memo: React.FC<MemoProps> = ({ memo, setMemos }) => {
   return (
     <>
       <div className='card'>
@@ -11,9 +11,12 @@ export const Memo: React.FC<MemoProps> = ({ memo }) => {
           {memo.description}
         </div>
         <div className='button'>
-          <EditButton />
+          <EditButton 
+            _id={memo._id}
+          />
           <DeleteButton 
             _id={memo._id}
+            setMemos={setMemos}
           />
         </div>
       </div>

@@ -9,6 +9,7 @@ interface IMemo {
 
 interface MemoProps {
   memo: IMemo;
+  setMemos: React.Dispatch<React.SetStateAction<IMemo[]>>;
 };
 
 type ApiMemoDataType = {

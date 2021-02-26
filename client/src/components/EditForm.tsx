@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { BackButton } from './BackButton';
 import { SaveButton } from './SaveButton';
-
-type Props = {
-  memo?: IMemo
-};
+import { getMemo } from '../API';
 
 export type FormData = {
   title: string;
@@ -12,11 +10,12 @@ export type FormData = {
   description: string;
 };
 
-export const EditForm: React.FC<Props> = ({ memo }) => {
+export const EditForm: React.FC = () => {
+  const param: any = useParams();
   const [formData, setFormData] = useState<FormData>({
-    title: memo?.title ?? '',
-    pinned: memo?.pinned　?? false,
-    description: memo?.description ?? ''
+    title: '',
+    pinned: false,
+    description: '',
   });
 
   const updateField = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -26,6 +25,22 @@ export const EditForm: React.FC<Props> = ({ memo }) => {
     });
   };
 
+  const fetchMemo = (_id: string): void => {
+    getMemo(_id)
+      .then(({ data: { memo } }: IMemo | any) => setFormData({
+        ...formData,
+        title: memo.title,
+        pinned: memo.pinned,
+        description: memo.description,
+      }))
+      .catch((err: Error) => console.log(err));
+  };
+
+  useEffect(() => {
+    if (!param.id) return;
+    fetchMemo(param.id);
+  }, []);
+
   return (
     <div className='container'>
       <div className="add-button">
@@ -34,7 +49,7 @@ export const EditForm: React.FC<Props> = ({ memo }) => {
       <div className='editform'>
         <div className='title'>
           <label>タイトル</label>
-          <input type='text' name='title' onChange={e => updateField(e)}/>
+          <input type='text' name='title' value={formData.title} onChange={e => updateField(e)}/>
         </div>
         <div className='pin'>
           <label>ピン留め</label>
@@ -44,10 +59,11 @@ export const EditForm: React.FC<Props> = ({ memo }) => {
         </div>
         <div className='description'>
           <label>詳細</label>
-          <textarea name='description' onChange={e => updateField(e)}/>
+          <textarea name='description' value={formData.description} onChange={e => updateField(e)}/>
         </div>
         <div className='savebutton'>
-          <SaveButton 
+          <SaveButton
+            _id={param.id}
             formData={formData}
           />
         </div>

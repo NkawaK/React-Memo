@@ -11,6 +11,15 @@ const getMemos = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+const getMemo = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const memo: IMemo | null = await Memo.findById(req.params.id);
+    res.status(200).json({ memo });
+  } catch (error) {
+    throw error;
+  }
+};
+
 const addMemo = async (req: Request, res: Response):  Promise<void> => {
   try {
     const body = req.body as Pick<IMemo, 'title' | 'description' | 'pinned'>;
@@ -21,10 +30,9 @@ const addMemo = async (req: Request, res: Response):  Promise<void> => {
       pinned: body.pinned,
     });
 
-    const newMemo: IMemo = await memo.save();
-    const allMemos: IMemo[] = await Memo.find();
+    await memo.save();
 
-    res.status(201).json({ message: 'メモを追加しました。', memo: newMemo, memos: allMemos });
+    res.status(201).json({ message: 'メモを追加しました。' });
   } catch (error) {
     throw error;
   }
@@ -32,12 +40,12 @@ const addMemo = async (req: Request, res: Response):  Promise<void> => {
 
 const updateMemo = async (req: Request, res: Response): Promise<void> => {
   try {
+    console.log();
     const { params: { id }, body, } = req;
 
-    const updatedMemo: IMemo | null = await Memo.findByIdAndUpdate({ _id: id}, body);
-    const allMemos: IMemo[] = await Memo.find();
+    await Memo.findByIdAndUpdate({ _id: id}, body);
 
-    res.status(200).json({ message: 'メモを更新しました。', memo: updatedMemo, memos: allMemos });
+    res.status(200).json({ message: 'メモを更新しました。' });
   } catch (error) {
     throw error;
   }
@@ -54,4 +62,4 @@ const deleteMemo = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export { getMemos, addMemo, updateMemo, deleteMemo };
+export { getMemos, getMemo, addMemo, updateMemo, deleteMemo };

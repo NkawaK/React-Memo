@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteMemo = exports.updateMemo = exports.addMemo = exports.getMemos = void 0;
+exports.deleteMemo = exports.updateMemo = exports.addMemo = exports.getMemo = exports.getMemos = void 0;
 const memo_1 = __importDefault(require("../../models/memo"));
 const getMemos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,6 +24,16 @@ const getMemos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getMemos = getMemos;
+const getMemo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const memo = yield memo_1.default.findById(req.params.id);
+        res.status(200).json({ memo });
+    }
+    catch (error) {
+        throw error;
+    }
+});
+exports.getMemo = getMemo;
 const addMemo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
@@ -32,9 +42,8 @@ const addMemo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             description: body.description,
             pinned: body.pinned,
         });
-        const newMemo = yield memo.save();
-        const allMemos = yield memo_1.default.find();
-        res.status(201).json({ message: 'メモを追加しました。', memo: newMemo, memos: allMemos });
+        yield memo.save();
+        res.status(201).json({ message: 'メモを追加しました。' });
     }
     catch (error) {
         throw error;
@@ -43,10 +52,10 @@ const addMemo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.addMemo = addMemo;
 const updateMemo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log();
         const { params: { id }, body, } = req;
-        const updatedMemo = yield memo_1.default.findByIdAndUpdate({ _id: id }, body);
-        const allMemos = yield memo_1.default.find();
-        res.status(200).json({ message: 'メモを更新しました。', memo: updatedMemo, memos: allMemos });
+        yield memo_1.default.findByIdAndUpdate({ _id: id }, body);
+        res.status(200).json({ message: 'メモを更新しました。' });
     }
     catch (error) {
         throw error;
