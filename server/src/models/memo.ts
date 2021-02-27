@@ -18,4 +18,4 @@ const memoSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export default model<IMemo>("Memo", memoSchema);
+export default model<IMemo>('Memo', memoSchema);

@@ -1,14 +1,40 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import mongoose from 'mongoose';
+import expressSession from 'express-session';
+import cookieParser from 'cookie-parser';
+import passport from 'passport';
 import cors from 'cors';
 import routes from './routes';
+import User from './models/user';
 
 const app: Express = express();
 
 const PORT: string | number = process.env.PORT || 4000;
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(
+  expressSession({
+    secret: 'reactMemo1234',
+    cookie: {
+      maxAge: 4000000
+    },
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use((User as any).UsercreateStrategy());
+passport.serializeUser((User as any).serializeUser());
+passport.deserializeUser((User as any).deserializeUser());
+
+app.use((req: Request, res: Response) => {
+  res.locals.loggedIn = req.isAuthenticated();
+  res.locals.currentUser = req.user;
+});
 
 app.use(cors());
 app.use(routes);

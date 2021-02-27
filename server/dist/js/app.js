@@ -9,7 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const routes_1 = __importDefault(require("./routes"));
 const app = express_1.default();
 const PORT = process.env.PORT || 4000;
-app.use(express_1.default.urlencoded({ extended: false }));
+app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use(cors_1.default());
 app.use(routes_1.default);
