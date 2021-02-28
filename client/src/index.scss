@@ -135,6 +135,42 @@ footer {
   }
 }
 
+.icon {
+  margin-top: 3rem;
+  color: #fff;
+  text-align: center;
+}
+
+.signin-form {
+  margin: 0 auto;
+  padding: 1.5rem;
+  width: 60%;
+  height: 10rem;
+  background-color: #a9a9a9;
+  border: solid 1px black;
+  border-radius: 0.1rem;
+  color: #fff;
+  label {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  input {
+    width: 99%;
+    border: solid 1px black;
+    border-radius: 0.1rem;
+  }
+  .email {
+    margin-bottom: 1rem;
+  }
+  .password {
+    margin-bottom: 1rem;
+  }
+  .btn {
+    float: right;
+  }
+}
+
 .editform {
   margin: 0 auto;
   padding: 1.5rem;

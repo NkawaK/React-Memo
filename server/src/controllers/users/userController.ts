@@ -54,4 +54,4 @@ const signOut = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export { signIn, signUp, signOut };
+export { getUser, signIn, signUp, signOut };

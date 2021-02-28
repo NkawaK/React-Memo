@@ -14,6 +14,7 @@ const PORT: string | number = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(cookieParser('reactMemo1234'));
 app.use(
   expressSession({
     secret: 'reactMemo1234',
@@ -27,13 +28,14 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use((User as any).UsercreateStrategy());
+passport.use((User as any).createStrategy());
 passport.serializeUser((User as any).serializeUser());
 passport.deserializeUser((User as any).deserializeUser());
 
-app.use((req: Request, res: Response) => {
+app.use((req: Request, res: Response, next: any) => {
   res.locals.loggedIn = req.isAuthenticated();
   res.locals.currentUser = req.user;
+  next();
 });
 
 app.use(cors());
