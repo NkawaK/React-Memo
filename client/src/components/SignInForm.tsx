@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SignInButton } from '../components/SignInButton';
 
 export const SignInForm: React.FC = () => {
   return (
@@ -19,9 +20,7 @@ export const SignInForm: React.FC = () => {
         <Link to='/signup'>
           アカウント作成
         </Link>
-        <Link to='#' className="btn btn-small btn--navy">
-          ログイン
-        </Link>
+        <SignInButton />
       </div>
     </div>
   );

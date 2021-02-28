@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SignUpButton } from '../components/SignUpButton';
 
 export const SignUpForm: React.FC = () => {
   return (
@@ -21,9 +21,7 @@ export const SignUpForm: React.FC = () => {
           <input type='password'/>
         </div>
         <div className='submit-button'>
-          <Link to='#' className="btn btn-–large btn--navy">
-            アカウント作成
-          </Link>
+          <SignUpButton />
         </div>
       </div>
     </div>

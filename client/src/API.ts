@@ -2,6 +2,50 @@ import axios, { AxiosResponse } from 'axios';
 
 const baseURL: string = 'http://localhost:4000';
 
+export const getUser = async (): Promise<AxiosResponse<ApiUserDataType>> => {
+  try {
+    const user: AxiosResponse<ApiUserDataType> = await axios.get(`${baseURL}/user`);
+    return user;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const signUp = async (formData: Omit<IUser, '_id'>): Promise<AxiosResponse<ApiUserDataType>> => {
+  try {
+    const user: Omit<IUser, '_id'> = {
+      userName: formData.userName,
+      email: formData.email,
+      password: formData.password,
+    };
+    const registeredUser: AxiosResponse<ApiUserDataType> = await axios.post(`${baseURL}/signUp`, user);
+    return registeredUser;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const signIp = async (formData: Pick<IUser, 'email'|'password'>): Promise<AxiosResponse<ApiUserDataType>> => {
+  try {
+    const user: Pick<IUser, 'email'|'password'> = {
+      email: formData.email,
+      password: formData.password,
+    };
+    const loginUser: AxiosResponse<ApiUserDataType> = await axios.post(`${baseURL}/signIn`, user);
+    return loginUser;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const signOut = async (): Promise<void> => {
+  try {
+    await axios.get(`${baseURL}/signOut`);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 export const getMemos = async (): Promise<AxiosResponse<ApiMemoDataType>> => {
   try {
     const memos: AxiosResponse<ApiMemoDataType> = await axios.get(`${baseURL}/memos`);

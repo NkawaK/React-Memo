@@ -1,3 +1,12 @@
+interface IUser {
+  _id: string;
+  userName: string;
+  email: string;
+  password: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 interface IMemo {
   _id: string;
   title: string;
@@ -11,6 +20,12 @@ interface MemoProps {
   memo: IMemo;
   setMemos: React.Dispatch<React.SetStateAction<IMemo[]>>;
 };
+
+type ApiUserDataType = {
+  message: string;
+  status: string;
+  user: IUser;
+}
 
 type ApiMemoDataType = {
   message: string;
