@@ -41,7 +41,7 @@ app.use((req: Request, res: Response, next: any) => {
 app.use(cors());
 app.use(routes);
 
-const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.qcl1j.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
+const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}${process.env.MONGO_CLUSTER}/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose.set('useFindAndModify', false);
 

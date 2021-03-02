@@ -21,10 +21,14 @@ interface MemoProps {
   setMemos: React.Dispatch<React.SetStateAction<IMemo[]>>;
 };
 
+interface UserProps {
+  setUser: React.Dispatch<React.SetStateAction<IUser|false>>;
+};
+
 type ApiUserDataType = {
   message: string;
   status: string;
-  user: IUser;
+  user: IUser | false;
 }
 
 type ApiMemoDataType = {

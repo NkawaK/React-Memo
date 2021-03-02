@@ -7,7 +7,7 @@ const getUser = async (req: Request, res: Response): Promise<void> => {
   try {
     if (res.locals.loggedIn) {
       const user = res.locals.currentUser;
-      res.status(200).json({ message: 'ログインしています。', user });
+      res.status(200).json({ message: 'ログインしています。', user: user });
     } else {
       res.status(401).json({ message: 'ログインしていません。' });
     }
@@ -21,7 +21,7 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
     const newUser: IUser = new User(req.body);
     (User as any).register(newUser, req.body.password, (err: any, user: IUser) => {
       if (user) {
-        res.status(201).json({ message: 'ユーザーを作成しました。', user });
+        res.status(201).json({ message: 'ユーザーを作成しました。', user: user });
       } else {
         res.status(404).json({ message: 'ユーザーの作成に失敗しました。', err });
       }
