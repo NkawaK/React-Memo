@@ -25,6 +25,12 @@ interface UserProps {
   setUser: React.Dispatch<React.SetStateAction<IUser|false>>;
 };
 
+interface AuthFormData {
+  userName: string;
+  email: string;
+  password: string;
+};
+
 type ApiUserDataType = {
   message: string;
   status: string;

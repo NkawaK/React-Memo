@@ -16,14 +16,14 @@ export const SaveButton: React.FC<Props> = ({ _id, formData }) => {
     if (_id) {
       updateMemo(_id, formData)
         .then(({ status }) => {
-          if (status !== 200) throw new Error("メモの編集に失敗しました。");
+          if (status !== 200) throw new Error('メモの編集に失敗しました。');
           setIsSaved(true);
         })
         .catch(err => console.log(err));
     } else {
       addMemo(formData)
         .then(({ status }) => {
-          if (status !== 201) throw new Error("メモの追加に失敗しました。");
+          if (status !== 201) throw new Error('メモの追加に失敗しました。');
           setIsSaved(true); 
         })
         .catch(err => console.log(err));
@@ -31,9 +31,11 @@ export const SaveButton: React.FC<Props> = ({ _id, formData }) => {
   };
 
   return (
-    isSaved ? <Redirect to='/memos'/> :
+    isSaved ? 
+    <Redirect to='/memos'/>
+    :
     <Link to="#" className='btn btn-–large btn--navy'
-     onClick={e => handleSaveMemo(e)}
+      onClick={e => handleSaveMemo(e)}
     >
       保存
     </Link>

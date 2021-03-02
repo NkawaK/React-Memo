@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SignInButton } from '../components/SignInButton';
 
-export const SignInForm: React.FC = () => {
+export const SignInForm: React.FC<UserProps> = ({ setUser }) => {
   return (
     <div className='container'>
       <h2 className='icon'>
@@ -20,7 +20,9 @@ export const SignInForm: React.FC = () => {
         <Link to='/signup'>
           アカウント作成
         </Link>
-        <SignInButton />
+        <SignInButton
+          setUser={setUser}
+        />
       </div>
     </div>
   );

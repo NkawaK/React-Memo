@@ -3,6 +3,8 @@ import { SignInForm } from '../components/SignInForm';
 
 export const SignIn: React.FC<UserProps> = ({ setUser }) => {
   return (
-    <SignInForm/>
+    <SignInForm
+      setUser={setUser}
+    />
   );
 };

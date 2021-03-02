@@ -16,11 +16,12 @@ const App: React.FC = () => {
   useEffect(() => {
     getUser()
       .then(({ status, data }) => {
+        console.log(data);
         if (status === 200) {
           setUser(data.user);
         }
       })
-      .catch((err: Error) => console.log(err));
+      .catch(err => console.log(err));
   }, [])
 
   return (
