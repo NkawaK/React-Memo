@@ -17,8 +17,8 @@ const user_1 = __importDefault(require("../../models/user"));
 const passport_1 = __importDefault(require("passport"));
 const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (res.locals.loggedIn) {
-            const user = res.locals.currentUser;
+        if (req.isAuthenticated()) {
+            const user = req.user;
             res.status(200).json({ message: 'ログインしています。', user: user });
         }
         else {
@@ -47,7 +47,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.signUp = signUp;
-const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const signIn = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         passport_1.default.authenticate('local', (error, user, info) => {
             if (error)
@@ -58,7 +58,7 @@ const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             else {
                 res.status(401).json({ message: 'emailかパスワードが間違っています。', info });
             }
-        });
+        })(req, res, next);
     }
     catch (error) {
         throw error;

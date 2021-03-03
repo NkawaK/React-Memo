@@ -13,7 +13,7 @@ export const SignUpButton: React.FC<Props> = ({ setUser, formData }) => {
     e.preventDefault();
     signUp(formData)
       .then(({ status, data }) => {
-        if (status !== 201) throw new Error('アカウント作成失敗しました。');
+        if (status !== 201) throw new Error('アカウント作成に失敗しました。');
         data.user && setUser(data.user) && setIsLogined(true);
       })
       .catch(err => console.log(err));

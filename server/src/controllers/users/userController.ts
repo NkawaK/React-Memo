@@ -5,8 +5,8 @@ import passport from 'passport';
 
 const getUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    if (res.locals.loggedIn) {
-      const user = res.locals.currentUser;
+    if (req.isAuthenticated()) {
+      const user = req.user;
       res.status(200).json({ message: 'ログインしています。', user: user });
     } else {
       res.status(401).json({ message: 'ログインしていません。' });
@@ -31,7 +31,7 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const signIn = async (req: Request, res: Response): Promise<void> => {
+const signIn = async (req: Request, res: Response, next: any): Promise<void> => {
   try {
     passport.authenticate('local', (error, user, info) => {
       if (error) res.status(404).json({ message: 'エラーが発生しました。', error });
@@ -40,7 +40,7 @@ const signIn = async (req: Request, res: Response): Promise<void> => {
       } else {
         res.status(401).json({ message: 'emailかパスワードが間違っています。', info });
       }
-    });
+    })(req, res, next);
   } catch (error) {
     throw error;
   }

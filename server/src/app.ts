@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import expressSession from 'express-session';
 import cookieParser from 'cookie-parser';
@@ -11,7 +11,7 @@ const app: Express = express();
 
 const PORT: string | number = process.env.PORT || 4000;
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cookieParser('reactMemo1234'));
@@ -32,13 +32,12 @@ passport.use((User as any).createStrategy());
 passport.serializeUser((User as any).serializeUser());
 passport.deserializeUser((User as any).deserializeUser());
 
-app.use((req: Request, res: Response, next: any) => {
-  res.locals.loggedIn = req.isAuthenticated();
-  res.locals.currentUser = req.user;
-  next();
-});
+app.use(cors({
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+}));
 
-app.use(cors());
 app.use(routes);
 
 const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}${process.env.MONGO_CLUSTER}/${process.env.MONGO_DB}?retryWrites=true&w=majority`;

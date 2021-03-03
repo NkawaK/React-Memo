@@ -4,7 +4,7 @@ const baseURL: string = 'http://localhost:4000';
 
 export const getUser = async (): Promise<AxiosResponse<ApiUserDataType>> => {
   try {
-    const user: AxiosResponse<ApiUserDataType> = await axios.get(`${baseURL}/user`);
+    const user: AxiosResponse<ApiUserDataType> = await axios.get(`${baseURL}/user`, { withCredentials: true });
     return user;
   } catch (error) {
     throw new Error(error);
@@ -25,7 +25,7 @@ export const signUp = async (formData: Omit<IUser, '_id'>): Promise<AxiosRespons
   }
 };
 
-export const signIp = async (formData: Pick<IUser, 'email'|'password'>): Promise<AxiosResponse<ApiUserDataType>> => {
+export const signIn = async (formData: Pick<IUser, 'email'|'password'>): Promise<AxiosResponse<ApiUserDataType>> => {
   try {
     const user: Pick<IUser, 'email'|'password'> = {
       email: formData.email,
