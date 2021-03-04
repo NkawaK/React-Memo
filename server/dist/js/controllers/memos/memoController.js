@@ -16,7 +16,7 @@ exports.deleteMemo = exports.updateMemo = exports.addMemo = exports.getMemo = ex
 const memo_1 = __importDefault(require("../../models/memo"));
 const getMemos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const memos = yield memo_1.default.find();
+        const memos = yield memo_1.default.find({ userId: req.body.userId });
         res.status(200).json({ memos });
     }
     catch (error) {
@@ -41,6 +41,7 @@ const addMemo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             title: body.title,
             description: body.description,
             pinned: body.pinned,
+            userId: body.userId,
         });
         yield memo.save();
         res.status(201).json({ message: 'メモを追加しました。' });

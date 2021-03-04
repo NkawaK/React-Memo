@@ -4,7 +4,7 @@ import Memo from '../../models/memo';
 
 const getMemos = async (req: Request, res: Response): Promise<void> => {
   try {
-    const memos: IMemo[] = await Memo.find();
+    const memos: IMemo[] = await Memo.find({ userId: req.body.userId });
     res.status(200).json({ memos });
   } catch (error) {
     throw error;
@@ -22,12 +22,12 @@ const getMemo = async (req: Request, res: Response): Promise<void> => {
 
 const addMemo = async (req: Request, res: Response):  Promise<void> => {
   try {
-    const body = req.body as Pick<IMemo, 'title' | 'description' | 'pinned'>;
-
+    const body = req.body as Pick<IMemo, 'title'|'description'|'pinned'|'userId'>;
     const memo: IMemo = new Memo({
       title: body.title,
       description: body.description,
       pinned: body.pinned,
+      userId: body.userId,
     });
 
     await memo.save();

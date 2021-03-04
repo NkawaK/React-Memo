@@ -13,5 +13,9 @@ const memoSchema = new mongoose_1.Schema({
         type: Boolean,
         required: true,
     },
+    userId: {
+        type: String,
+        required: true,
+    },
 }, { timestamps: true });
 exports.default = mongoose_1.model('Memo', memoSchema);
