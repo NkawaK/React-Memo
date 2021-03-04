@@ -3,9 +3,9 @@ import { SignUpButton } from '../components/SignUpButton';
 
 export const SignUpForm: React.FC<UserProps> = ({ setUser }) => {
   const [formData, setFormData] = useState<AuthFormData>({
-    userName: "",
-    email: "",
-    password: "",
+    userName: '',
+    email: '',
+    password: '',
   });
 
   const updateField = (e: React.ChangeEvent<HTMLInputElement>) => {

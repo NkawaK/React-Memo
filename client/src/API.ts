@@ -38,9 +38,10 @@ export const signOut = async (): Promise<AxiosResponse<Pick<ApiUserDataType, 'me
   }
 }
 
-export const getMemos = async (): Promise<AxiosResponse<ApiMemoDataType>> => {
+export const getMemos = async (userId: string): Promise<AxiosResponse<ApiMemoDataType>> => {
+  const request = { userId: userId };
   try {
-    const memos: AxiosResponse<ApiMemoDataType> = await axios.get(`${baseURL}/memos`);
+    const memos: AxiosResponse<ApiMemoDataType> = await axios.post(`${baseURL}/memos`, request);
     return memos;
   } catch (error) {
     throw new Error(error);
@@ -62,6 +63,7 @@ export const addMemo = async (formData: Omit<IMemo, '_id'>): Promise<AxiosRespon
       title: formData.title,
       description: formData.description,
       pinned: formData.pinned,
+      userId: formData.userId,
     };
 
     const response: AxiosResponse<ApiMemoDataType> = await axios.post(`${baseURL}/add-memo`, memo);
@@ -78,6 +80,7 @@ export const updateMemo = async (_id: string, formData: Omit<IMemo, '_id'>): Pro
       title: formData.title,
       description: formData.description,
       pinned: formData.pinned,
+      userId: formData.userId,
     };
     const updatedMemo: AxiosResponse<ApiMemoDataType> = await axios.put(`${baseURL}/edit-memo/${_id}`,memo);
     return updatedMemo;

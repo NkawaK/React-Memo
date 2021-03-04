@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { userContext } from '../App';
 import { Memo } from '../components/Memo';
 import { AddButton } from '../components/AddButton';
 import { getMemos } from '../API';
 
 export const Memos: React.FC = () => {
   const [memos, setMemos] = useState<IMemo[]>([]);
+  const { _id } = useContext(userContext);
 
   useEffect(() => {
     fetchMemos();
   }, []);
 
   const fetchMemos = (): void => {
-    getMemos()
+    getMemos(_id)
       .then(({ data: { memos } }: IMemo[] | any) => setMemos(memos))
       .catch((err: Error) => console.log(err));
   };

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { userContext } from '../App';
 import { useParams } from 'react-router-dom';
 import { BackButton } from './BackButton';
 import { SaveButton } from './SaveButton';
@@ -8,14 +9,17 @@ export type FormData = {
   title: string;
   pinned: boolean;
   description: string;
+  userId: string;
 };
 
 export const EditForm: React.FC = () => {
   const param: any = useParams();
+  const { _id } = useContext(userContext);
   const [formData, setFormData] = useState<FormData>({
     title: '',
     pinned: false,
     description: '',
+    userId: _id,
   });
 
   const updateField = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -54,7 +58,7 @@ export const EditForm: React.FC = () => {
         <div className='pin'>
           <label>ピン留め</label>
           <input type='checkbox' name='pinned' checked={formData.pinned} 
-           onChange={() => setFormData({...formData, pinned: !formData.pinned})}
+            onChange={() => setFormData({...formData, pinned: !formData.pinned})}
           />
         </div>
         <div className='description'>

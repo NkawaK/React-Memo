@@ -12,6 +12,7 @@ interface IMemo {
   title: string;
   description: string;
   pinned: boolean;
+  userId: string;
   createdAt?: string;
   updatedAt?: string;
 };

@@ -16,7 +16,7 @@ export const SignInButton: React.FC<Props> = ({ formData, setUser }) => {
         console.log(status);
         if (status !== 200) throw new Error('ログインに失敗しました。');
         localStorage.setItem('reactMemoAuth', 
-        JSON.stringify({ id: (data.user as IUser)._id ,userName: (data.user as IUser).userName }));
+        JSON.stringify({ _id: (data.user as IUser)._id ,userName: (data.user as IUser).userName }));
         data.user && setUser(data.user) && setIsLogined(true);
       })
       .catch(err => console.log(err))
