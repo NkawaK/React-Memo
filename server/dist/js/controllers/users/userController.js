@@ -23,7 +23,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 res.status(201).json({ message: 'ユーザーを作成しました。', user: user });
             }
             else {
-                res.status(404).json({ message: 'ユーザーの作成に失敗しました。', err });
+                res.status(500).json({ message: 'ユーザーの作成に失敗しました。', err });
             }
         });
     }

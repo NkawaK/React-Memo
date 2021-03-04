@@ -10,7 +10,7 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
       if (user) {
         res.status(201).json({ message: 'ユーザーを作成しました。', user: user });
       } else {
-        res.status(404).json({ message: 'ユーザーの作成に失敗しました。', err });
+        res.status(500).json({ message: 'ユーザーの作成に失敗しました。', err });
       }
     });
   } catch (error) {
