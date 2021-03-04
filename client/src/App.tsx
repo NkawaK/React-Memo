@@ -6,7 +6,6 @@ import { Memos } from './pages/Memos';
 import { EditMemo } from './pages/EditMemo'
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { getUser } from './API';
 
 const userContext = React.createContext<IUser|false>(false); 
 
@@ -14,11 +13,8 @@ const App: React.FC = () => {
   const [user, setUser] = useState<IUser|false>(false);
 
   useEffect(() => {
-    getUser()
-      .then(({ status, data }) => {
-        status === 200 && setUser(data.user);
-      })
-      .catch(err => console.log(err));
+    const currentUser = JSON.parse(localStorage.getItem('reactMemoAuth') as string);
+    currentUser && setUser(currentUser);
   }, [])
 
   return (
