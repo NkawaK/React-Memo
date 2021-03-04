@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const [user, setUser] = useState<IUser|false>(false);
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('reactMemoAuth') as string);
+    const currentUser: IUser | null = JSON.parse(localStorage.getItem('reactMemoAuth') as string);
     currentUser && setUser(currentUser);
   }, [])
 

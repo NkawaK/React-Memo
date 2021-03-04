@@ -14,7 +14,8 @@ export const SignUpButton: React.FC<Props> = ({ setUser, formData }) => {
     signUp(formData)
       .then(({ status, data }) => {
         if (status !== 201) throw new Error('アカウント作成に失敗しました。');
-        localStorage.setItem('reactMemoAuth', JSON.stringify(data.user));
+        localStorage.setItem('reactMemoAuth', 
+        JSON.stringify({ id: (data.user as IUser)._id ,userName: (data.user as IUser).userName }));
         data.user && setUser(data.user) && setIsLogined(true);
       })
       .catch(err => console.log(err));
