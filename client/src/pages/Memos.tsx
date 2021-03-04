@@ -21,16 +21,18 @@ export const Memos: React.FC = () => {
   return (
     <>
       <div className='container'>
-        <div className="add-button">
+        <div className='add-button'>
           <AddButton />
         </div>
-        {memos.map((memo: IMemo) => (
-          <Memo
-            key={memo._id}
-            memo={memo}
-            setMemos={setMemos}
-          />
-        ))}
+        <div className='memos'>
+          {memos.map((memo: IMemo) => (
+            <Memo
+              key={memo._id}
+              memo={memo}
+              setMemos={setMemos}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #696969;
+  overflow: hidden;
 }
 
 code {
@@ -115,10 +116,21 @@ footer {
   margin-bottom: 1rem;
 }
 
+.memos {
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.memos::-webkit-scrollbar {
+  display:none;
+}
+
 .card {
   background-color: #a9a9a9;
   border: solid 1px black;
-  width: 100%;
+  max-width: 703px;
   height: 8rem;
   border-radius: 0.1rem;
   color: #fff;
