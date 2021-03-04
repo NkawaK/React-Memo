@@ -7,7 +7,7 @@ import { EditMemo } from './pages/EditMemo'
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
-const userContext = React.createContext<IUser|false>(false); 
+export const userContext = React.createContext<Pick<IUser, '_id'|'userName'>>({ _id: '', userName: '' }); 
 
 const App: React.FC = () => {
   const [user, setUser] = useState<IUser|false>(false);
@@ -20,7 +20,7 @@ const App: React.FC = () => {
   return (
     user ? 
     <userContext.Provider value={user}>
-      <Header />
+      <Header setUser={setUser}/>
         <BrowserRouter>
           <Switch>
             <Route path='/memos' component={Memos} exact/>

@@ -29,9 +29,10 @@ export const signIn = async (formData: Pick<IUser, 'email'|'password'>): Promise
   }
 };
 
-export const signOut = async (): Promise<void> => {
+export const signOut = async (): Promise<AxiosResponse<Pick<ApiUserDataType, 'message'|'status'>>> => {
   try {
-    await axios.get(`${baseURL}/signOut`);
+    const result = await axios.get(`${baseURL}/signOut`);
+    return result;
   } catch (error) {
     throw new Error(error);
   }

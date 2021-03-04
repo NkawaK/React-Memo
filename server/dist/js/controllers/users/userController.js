@@ -53,6 +53,7 @@ exports.signIn = signIn;
 const signOut = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         req.logOut();
+        res.status(200).json({ message: 'ログアウトしました。' });
     }
     catch (error) {
         throw (error);

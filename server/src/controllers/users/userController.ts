@@ -36,6 +36,7 @@ const signIn = async (req: Request, res: Response, next: any): Promise<void> => 
 const signOut = async (req: Request, res: Response): Promise<void> => {
   try {
     req.logOut();
+    res.status(200).json({ message: 'ログアウトしました。' });
   } catch (error) {
     throw (error)
   }

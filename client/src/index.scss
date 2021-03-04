@@ -21,6 +21,17 @@ header {
   h3 {
     color: #fff;
     margin-left: 5rem;
+    .header--userinfo {
+      float: right;
+      margin-right: 5rem;
+      span {
+        margin-right: 0.5rem;
+      }
+      a {
+        margin-left: 0.5rem;
+        color: #fff;
+      }
+    }
   }
 } 
 
