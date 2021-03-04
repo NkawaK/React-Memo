@@ -12,7 +12,6 @@ const PORT: string | number = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(passport.initialize());
 passport.use((User as any).createStrategy());
 
 app.use(cors({

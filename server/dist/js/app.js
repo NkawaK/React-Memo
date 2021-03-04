@@ -13,7 +13,6 @@ const app = express_1.default();
 const PORT = process.env.PORT || 4000;
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
-app.use(passport_1.default.initialize());
 passport_1.default.use(user_1.default.createStrategy());
 app.use(cors_1.default({
     origin: "http://localhost:3000",
