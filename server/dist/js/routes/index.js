@@ -7,7 +7,7 @@ const router = express_1.Router();
 router.post('/signUp', userController_1.signUp);
 router.post('/signIn', userController_1.signIn);
 router.get('/signOut', userController_1.signOut);
-router.get('/memos', memoController_1.getMemos);
+router.post('/memos', memoController_1.getMemos);
 router.get('/memo/:id', memoController_1.getMemo);
 router.post('/add-memo', memoController_1.addMemo);
 router.put('/edit-memo/:id', memoController_1.updateMemo);

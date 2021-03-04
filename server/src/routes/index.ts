@@ -10,7 +10,7 @@ router.post('/signIn', signIn);
 
 router.get('/signOut', signOut);
 
-router.get('/memos', getMemos);
+router.post('/memos', getMemos);
 
 router.get('/memo/:id', getMemo);
 
