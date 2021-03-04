@@ -1,7 +1,5 @@
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
-import expressSession from 'express-session';
-import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import cors from 'cors';
 import routes from './routes';
@@ -14,23 +12,8 @@ const PORT: string | number = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(cookieParser('reactMemo1234'));
-app.use(
-  expressSession({
-    secret: 'reactMemo1234',
-    cookie: {
-      maxAge: 4000000
-    },
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-
 app.use(passport.initialize());
-app.use(passport.session());
 passport.use((User as any).createStrategy());
-passport.serializeUser((User as any).serializeUser());
-passport.deserializeUser((User as any).deserializeUser());
 
 app.use(cors({
   origin: "http://localhost:3000",

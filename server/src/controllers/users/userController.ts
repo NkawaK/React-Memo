@@ -3,19 +3,6 @@ import { IUser } from '../../types/user';
 import User from '../../models/user';
 import passport from 'passport';
 
-const getUser = async (req: Request, res: Response): Promise<void> => {
-  try {
-    if (req.isAuthenticated()) {
-      const user = req.user;
-      res.status(200).json({ message: 'ログインしています。', user: user });
-    } else {
-      res.status(401).json({ message: 'ログインしていません。' });
-    }
-  } catch (error) {
-    throw error;
-  }
-};
-
 const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const newUser: IUser = new User(req.body);
@@ -54,4 +41,4 @@ const signOut = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export { getUser, signIn, signUp, signOut };
+export { signIn, signUp, signOut };

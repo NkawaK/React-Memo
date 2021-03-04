@@ -1,10 +1,8 @@
 import { Router } from 'express';
-import { getUser, signUp, signIn, signOut } from '../controllers/users/userController';
+import { signUp, signIn, signOut } from '../controllers/users/userController';
 import { getMemos, getMemo, addMemo, updateMemo, deleteMemo, } from '../controllers/memos/memoController';
 
 const router: Router = Router();
-
-router.get('/user', getUser);
 
 router.post('/signUp', signUp);
 

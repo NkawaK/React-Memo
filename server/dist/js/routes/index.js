@@ -4,7 +4,6 @@ const express_1 = require("express");
 const userController_1 = require("../controllers/users/userController");
 const memoController_1 = require("../controllers/memos/memoController");
 const router = express_1.Router();
-router.get('/user', userController_1.getUser);
 router.post('/signUp', userController_1.signUp);
 router.post('/signIn', userController_1.signIn);
 router.get('/signOut', userController_1.signOut);

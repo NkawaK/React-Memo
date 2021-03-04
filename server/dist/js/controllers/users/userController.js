@@ -12,24 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signOut = exports.signUp = exports.signIn = exports.getUser = void 0;
+exports.signOut = exports.signUp = exports.signIn = void 0;
 const user_1 = __importDefault(require("../../models/user"));
 const passport_1 = __importDefault(require("passport"));
-const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        if (req.isAuthenticated()) {
-            const user = req.user;
-            res.status(200).json({ message: 'ログインしています。', user: user });
-        }
-        else {
-            res.status(401).json({ message: 'ログインしていません。' });
-        }
-    }
-    catch (error) {
-        throw error;
-    }
-});
-exports.getUser = getUser;
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newUser = new user_1.default(req.body);
