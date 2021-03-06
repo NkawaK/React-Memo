@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import _ from 'lodash';
 import { userContext } from '../App';
 import { Memo } from '../components/Memo';
 import { AddButton } from '../components/AddButton';
@@ -14,7 +15,11 @@ export const Memos: React.FC = () => {
 
   const fetchMemos = (): void => {
     getMemos(_id)
-      .then(({ data: { memos } }: IMemo[] | any) => setMemos(memos))
+      .then(({ data: { memos } }: IMemo[] | any) => { 
+        const pinnedMemo = _.sortBy(memos.filter((memo: IMemo) => memo.pinned), 'updatedAt');
+        const unPinnedMemo = _.sortBy(memos.filter((memo: IMemo) => !memo.pinned), 'updatedAt');
+        setMemos([...pinnedMemo, ...unPinnedMemo]);
+      })
       .catch((err: Error) => console.log(err));
   };
 
