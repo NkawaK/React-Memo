@@ -23,9 +23,11 @@ app.use(
 );
 
 app.use(routes);
-
-const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}${process.env.MONGO_CLUSTER}/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
-const options = { useNewUrlParser: true, useUnifiedTopology: true };
+const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_ENDPOINT}/${process.env.MONGO_TABLE}?retryWrites=true&w=majority&appName=${process.env.MONGO_CLUSTER}`;
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
 mongoose.set("useFindAndModify", false);
 
 mongoose
