@@ -18,4 +18,4 @@ const memoSchema = new mongoose_1.Schema({
         required: true,
     },
 }, { timestamps: true });
-exports.default = mongoose_1.model('Memo', memoSchema);
+exports.default = (0, mongoose_1.model)('Memo', memoSchema);
