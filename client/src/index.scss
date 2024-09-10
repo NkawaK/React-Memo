@@ -24,7 +24,7 @@ header {
     margin-left: 5rem;
     .header--userinfo {
       float: right;
-      margin-right: 5rem;
+      margin-right: 1rem;
       span {
         margin-right: 0.5rem;
       }
@@ -73,10 +73,6 @@ footer {
   font-size: 0.7rem;
 }
 
-.btn-–large {
-  width: 85%;
-}
-
 .btn--blue {
   color: #fff;
   background-color: #a9a9a9;
@@ -111,8 +107,6 @@ footer {
 }
 
 .add-button {
-  position: relative;
-  left: -5rem;
   margin-bottom: 1rem;
 }
 
@@ -194,6 +188,9 @@ footer {
   }
   .submit-button {
     text-align: center;
+    a {
+      display: block;
+    }
   }
 }
 
@@ -230,7 +227,6 @@ footer {
 .editform {
   margin: 0 auto;
   padding: 1.5rem;
-  width: 100%;
   background-color: #a9a9a9;
   border: solid 1px black;
   border-radius: 0.1rem;
@@ -266,5 +262,8 @@ footer {
   }
   .savebutton {
     text-align: center;
+    a {
+      display: block;
+    }
   }
 }

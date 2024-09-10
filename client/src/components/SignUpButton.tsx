@@ -32,11 +32,7 @@ export const SignUpButton: React.FC<Props> = ({ setUser, formData }) => {
   return isLogined ? (
     <Navigate to="/memos" />
   ) : (
-    <Link
-      to="#"
-      className="btn btn-–large btn--navy"
-      onClick={(e) => handleSignUp(e)}
-    >
+    <Link to="#" className="btn btn--navy" onClick={(e) => handleSignUp(e)}>
       アカウント作成
     </Link>
   );

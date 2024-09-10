@@ -33,11 +33,7 @@ export const SaveButton: React.FC<Props> = ({ _id, formData }) => {
   return isSaved ? (
     <Navigate to="/memos" />
   ) : (
-    <Link
-      to="#"
-      className="btn btn-–large btn--navy"
-      onClick={(e) => handleSaveMemo(e)}
-    >
+    <Link to="#" className="btn btn--navy" onClick={(e) => handleSaveMemo(e)}>
       保存
     </Link>
   );
